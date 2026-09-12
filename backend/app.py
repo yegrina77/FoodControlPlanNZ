@@ -119,21 +119,34 @@ def quiz():
                 pool.pop(i)
                 break
 
-    payload = []
-    for q in selected:
-        payload.append(
-            {
-                "id": q["id"],
-                "category": q["category"],
-                "text_en": q["text_en"],
-                "text_ko": q["text_ko"],
-                "options": build_option_set(q),
-                "explanation_en": q["explanation_en"],
-                "explanation_ko": q["explanation_ko"],
-                "fcp_reference": q["fcp_reference"],
-            }
-        )
+    payload = [serialize_question(q) for q in selected]
+    return jsonify({"questions": payload})
 
+
+def serialize_question(q):
+    return {
+        "id": q["id"],
+        "category": q["category"],
+        "text_en": q["text_en"],
+        "text_ko": q["text_ko"],
+        "options": build_option_set(q),
+        "explanation_en": q["explanation_en"],
+        "explanation_ko": q["explanation_ko"],
+        "fcp_reference": q["fcp_reference"],
+    }
+
+
+@app.route("/api/quiz-by-ids", methods=["POST"])
+def quiz_by_ids():
+    """Re-fetch specific questions (fresh shuffled options) for a review round."""
+    if not require_auth():
+        return jsonify({"error": "unauthorized"}), 401
+    data = request.get_json(silent=True) or {}
+    ids = data.get("ids", [])
+    questions = load_questions()
+    by_id = {q["id"]: q for q in questions}
+    selected = [by_id[i] for i in ids if i in by_id]
+    payload = [serialize_question(q) for q in selected]
     return jsonify({"questions": payload})
 
 

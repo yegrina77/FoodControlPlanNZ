@@ -458,5 +458,189 @@
     "explanation_en": "Option 1 requires a written plan plus records including supplier details, brand and batch IDs, and Best Before/Use-By dates — this level of detail lets you do a targeted recall instead of recalling everything.",
     "explanation_ko": "Option 1은 서면 계획과 함께 공급업체 정보, 브랜드/배치 ID, Best Before/Use-By 날짜를 기록해야 합니다 — 이 정도 디테일이 있어야 전체가 아닌 특정 배치만 타겟 회수가 가능합니다.",
     "fcp_reference": "Red Card / Tracing your food / p.88"
+  },
+  {
+    "id": "setup-04",
+    "category": "setting_up",
+    "text_en": "You are a sole operator (no staff). Do you need to keep staff training records?",
+    "text_ko": "직원 없이 혼자 운영하는 사장님입니다. 직원 교육 기록을 남겨야 하나요?",
+    "correct_en": "No — sole operators don't need training records; the verifier checks you can meet the plan directly",
+    "correct_ko": "아니다 — 혼자 운영하면 교육 기록이 필요 없고, verifier가 직접 확인한다",
+    "distractor_pool_en": [
+      "Yes, every business must keep training records regardless of staff count",
+      "Only if you've been in business for more than a year",
+      "Only if your verifier specifically requests it in writing beforehand",
+      "Yes, but only for the first 6 months of operating"
+    ],
+    "distractor_pool_ko": [
+      "그렇다, 직원 수와 상관없이 모든 업체가 교육 기록을 남겨야 한다",
+      "1년 이상 운영한 경우에만 필요하다",
+      "verifier가 사전에 서면으로 요청한 경우에만 필요하다",
+      "그렇다, 단 운영 첫 6개월만 필요하다"
+    ],
+    "explanation_en": "The plan explicitly states: if you are a sole operator, you do not need to keep training records — your verifier will ensure you can meet all the rules in your plan directly.",
+    "explanation_ko": "FCP에 명시된 내용: 혼자 운영하는 경우 교육 기록을 남길 필요가 없고, verifier가 직접 사장님이 플랜의 모든 규칙을 지킬 수 있는지 확인합니다.",
+    "fcp_reference": "Dark Blue Card / Training and competency / p.21"
+  },
+  {
+    "id": "setup-05",
+    "category": "setting_up",
+    "text_en": "According to the plan, when must you train your staff?",
+    "text_ko": "FCP상 직원을 언제 교육해야 하나요?",
+    "correct_en": "Before they handle food, before a procedure changes, and whenever needed (e.g. after something goes wrong)",
+    "correct_ko": "음식을 다루기 전, 절차가 바뀌기 전, 그리고 필요할 때(예: 문제가 생긴 후)",
+    "distractor_pool_en": [
+      "Only once, when they are first hired",
+      "Only annually, on a fixed schedule",
+      "Only if MPI specifically requests it",
+      "Only after a verification visit finds a problem"
+    ],
+    "distractor_pool_ko": [
+      "채용 시 딱 한 번만",
+      "매년 정해진 일정으로만",
+      "MPI가 특별히 요청할 때만",
+      "검증 방문에서 문제가 발견된 후에만"
+    ],
+    "explanation_en": "Training is required before staff start handling food, before a procedure is introduced or changed, and whenever you think it's needed — such as after something has gone wrong. It's not a one-off or purely annual event.",
+    "explanation_ko": "직원이 음식을 다루기 전, 절차가 도입/변경되기 전, 그리고 필요하다고 판단될 때(예: 문제 발생 후) 교육이 필요합니다. 한 번으로 끝나거나 연 1회로만 그치는 게 아닙니다.",
+    "fcp_reference": "Dark Blue Card / Training and competency / p.21"
+  },
+  {
+    "id": "prep-02",
+    "category": "preparing",
+    "text_en": "According to the 'Separating food' card, what extra step gives added protection against allergen cross-contamination?",
+    "text_ko": "'Separating food' 카드에 따르면, 알레르겐 교차오염을 막는 데 추가 보호가 되는 방법은?",
+    "correct_en": "Make allergen-free foods BEFORE making allergen-containing foods",
+    "correct_ko": "알레르겐이 없는 음식을 먼저 만들고, 그 다음에 알레르겐이 든 음식을 만든다",
+    "distractor_pool_en": [
+      "Make allergen-containing foods first, then allergen-free foods",
+      "Always use the same equipment regardless of order",
+      "Order doesn't matter as long as you clean between each dish",
+      "Make allergen-free and allergen-containing foods at the same time to save time"
+    ],
+    "distractor_pool_ko": [
+      "알레르겐 든 음식을 먼저 만들고 그 다음 알레르겐 없는 음식을 만든다",
+      "순서와 상관없이 같은 장비를 계속 써도 된다",
+      "요리마다 청소만 하면 순서는 상관없다",
+      "시간 절약을 위해 알레르겐 유/무 음식을 동시에 만든다"
+    ],
+    "explanation_en": "The card notes that making all allergen-free foods before allergen-containing foods can add extra protection against cross-contamination, on top of using separate equipment/spaces.",
+    "explanation_ko": "별도 장비/공간을 쓰는 것 외에도, 알레르겐 없는 음식을 먼저 만들고 알레르겐 든 음식을 나중에 만들면 교차오염에 대한 추가 보호가 된다고 명시되어 있습니다.",
+    "fcp_reference": "Green Card / Separating food / p.36"
+  },
+  {
+    "id": "prep-03",
+    "category": "preparing",
+    "text_en": "Why should food being defrosted in the fridge be kept in a container near the BOTTOM of the fridge?",
+    "text_ko": "냉장고에서 해동 중인 음식을 왜 용기에 담아 냉장고 '맨 아래쪽'에 둬야 하나요?",
+    "correct_en": "To stop juices from the defrosting food dripping onto other food and surfaces",
+    "correct_ko": "해동되는 음식에서 나오는 즙(액체)이 다른 음식이나 표면으로 떨어지는 것을 막기 위해",
+    "distractor_pool_en": [
+      "The bottom shelf is colder so food defrosts faster",
+      "It's easier for staff to reach without bending",
+      "It keeps the food away from the fridge's air vents",
+      "So the food is the first thing staff see when opening the fridge"
+    ],
+    "distractor_pool_ko": [
+      "맨 아래가 더 차가워서 해동이 빨라지기 때문에",
+      "직원이 허리를 굽히지 않고 꺼내기 편해서",
+      "냉장고 통풍구에서 멀어지게 하기 위해",
+      "냉장고를 열었을 때 가장 먼저 보이게 하기 위해"
+    ],
+    "explanation_en": "Defrosting food can release liquid containing harmful bugs. Keeping it in a container near the bottom of the fridge prevents those juices from dripping down onto other food and contaminating them.",
+    "explanation_ko": "해동 중인 음식에서 나오는 액체에는 유해균이 있을 수 있습니다. 맨 아래쪽에 용기에 담아두면 그 즙이 아래에 있는 다른 음식으로 떨어져 오염시키는 것을 막을 수 있습니다.",
+    "fcp_reference": "Magenta Card / Defrosting food / p.55"
+  },
+  {
+    "id": "prep-04",
+    "category": "preparing",
+    "text_en": "If you defrost food directly on the bench (not fridge, not running water, not microwave), what is the maximum time allowed?",
+    "text_ko": "해동을 냉장고/흐르는 물/전자레인지 없이 그냥 조리대(bench) 위에서 한다면, 최대 허용 시간은?",
+    "correct_en": "No more than 4 hours",
+    "correct_ko": "최대 4시간까지",
+    "distractor_pool_en": [
+      "No more than 1 hour",
+      "No more than 2 hours",
+      "No more than 8 hours",
+      "Bench defrosting is not allowed at all"
+    ],
+    "distractor_pool_ko": [
+      "최대 1시간까지",
+      "최대 2시간까지",
+      "최대 8시간까지",
+      "조리대 해동은 아예 허용되지 않는다"
+    ],
+    "explanation_en": "One of the allowed defrosting methods is to defrost on the bench for no more than 4 hours — alongside fridge thawing, microwave (use immediately), or running cold water in an airtight container.",
+    "explanation_ko": "허용되는 해동 방법 중 하나로 조리대에서 최대 4시간까지 해동이 가능합니다 — 냉장고 해동, 전자레인지(즉시 사용), 밀폐용기+흐르는 찬물 해동과 함께 선택 가능한 방법입니다.",
+    "fcp_reference": "Magenta Card / Defrosting food / p.55"
+  },
+  {
+    "id": "prep-05",
+    "category": "preparing",
+    "text_en": "If you want to import food for your business, what must you do?",
+    "text_ko": "사업에 쓸 음식을 수입하고 싶다면 어떻게 해야 하나요?",
+    "correct_en": "Register as a food importer with MPI, or only buy imported food from a registered food importer",
+    "correct_ko": "MPI에 식품 수입업자로 등록하거나, 등록된 수입업자로부터만 수입식품을 구매해야 한다",
+    "distractor_pool_en": [
+      "No registration is needed for food under a certain value",
+      "Just declare it at customs, no MPI registration needed",
+      "Only large-volume importers need to register",
+      "Register with your local council instead of MPI"
+    ],
+    "distractor_pool_ko": [
+      "일정 금액 이하 식품은 등록이 필요 없다",
+      "세관에만 신고하면 되고 MPI 등록은 필요 없다",
+      "대량 수입업자만 등록하면 된다",
+      "MPI 대신 지역 council에 등록하면 된다"
+    ],
+    "explanation_en": "If importing food, you must either register as a food importer with MPI yourself, or only purchase imported food from a business that is already a registered importer.",
+    "explanation_ko": "식품을 수입하려면 본인이 MPI에 식품 수입업자로 등록하거나, 이미 등록된 수입업자로부터만 수입식품을 구매해야 합니다.",
+    "fcp_reference": "Green Card / Sourcing, receiving and storing food / p.38"
+  },
+  {
+    "id": "serve-05",
+    "category": "serving_selling",
+    "text_en": "You switch to a new supplier for an ingredient you already use (same ingredient name, different brand). What must you do?",
+    "text_ko": "이미 쓰던 재료를 새로운 공급업체 제품으로 바꿨습니다 (재료명은 같고 브랜드만 다름). 어떻게 해야 하나요?",
+    "correct_en": "Check the ingredient again to make sure there are no new or additional allergens",
+    "correct_ko": "새 재료를 다시 확인해서 새롭거나 추가된 알레르겐이 없는지 체크해야 한다",
+    "distractor_pool_en": [
+      "Nothing — if the ingredient name is the same, no check is needed",
+      "Only check if the price changed significantly",
+      "Only check if a customer specifically asks about it",
+      "Notify MPI directly before using the new ingredient"
+    ],
+    "distractor_pool_ko": [
+      "아무것도 안 해도 된다 — 재료명이 같으면 확인 불필요",
+      "가격이 크게 바뀐 경우에만 확인한다",
+      "손님이 물어볼 때만 확인한다",
+      "새 재료를 쓰기 전에 MPI에 직접 통보해야 한다"
+    ],
+    "explanation_en": "Changing an ingredient or supplier (e.g. a different brand) requires re-checking the ingredient to make sure there are no new or additional allergens — the name staying the same doesn't guarantee the allergen profile stayed the same.",
+    "explanation_ko": "재료나 공급업체를 바꾸면(예: 다른 브랜드) 새롭거나 추가된 알레르겐이 없는지 다시 확인해야 합니다 — 이름이 같다고 알레르겐 구성까지 같다는 보장은 없습니다.",
+    "fcp_reference": "Orange Card / Knowing what is in your food / p.70"
+  },
+  {
+    "id": "serve-06",
+    "category": "serving_selling",
+    "text_en": "Who must be able to talk to customers about what's in their food (allergens)?",
+    "text_ko": "손님에게 음식 속 알레르겐에 대해 설명할 수 있어야 하는 사람은 누구인가요?",
+    "correct_en": "The day-to-day manager or a specifically delegated person (named/positioned in the plan)",
+    "correct_ko": "일상 관리 책임자, 또는 플랜에 구체적으로 지정된 담당자(이름/직책 명시)",
+    "distractor_pool_en": [
+      "Any staff member, no one needs to be specifically assigned",
+      "Only the business owner personally, no delegation allowed",
+      "Only kitchen staff, not front-of-house",
+      "This is optional and not required by the plan"
+    ],
+    "distractor_pool_ko": [
+      "아무 직원이나 상관없다, 특정 지정 불필요",
+      "사장님 본인만 가능하고 위임 불가",
+      "주방 직원만 해당하고 홀 직원은 해당 없다",
+      "이건 선택사항이라 FCP상 필수가 아니다"
+    ],
+    "explanation_en": "The plan requires the day-to-day manager or a specifically delegated person (named or by position) to be able to talk to customers about what's in their food — this must be assigned, not left to whoever happens to be available.",
+    "explanation_ko": "일상 관리 책임자 또는 플랜에 이름/직책으로 구체적으로 지정된 담당자가 손님에게 음식 속 성분을 설명할 수 있어야 합니다 — 아무나가 아니라 지정이 필요합니다.",
+    "fcp_reference": "Orange Card / Knowing what is in your food / p.71"
   }
 ]
