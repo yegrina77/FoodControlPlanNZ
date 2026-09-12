@@ -86,12 +86,13 @@ def quiz():
     if not require_auth():
         return jsonify({"error": "unauthorized"}), 401
 
-    category = request.args.get("category")
+    category_param = request.args.get("categories") or request.args.get("category")
     count = int(request.args.get("count", 10))
 
     questions = load_questions()
-    if category and category != "all":
-        questions = [q for q in questions if q["category"] == category]
+    if category_param and category_param != "all":
+        selected_cats = set(category_param.split(","))
+        questions = [q for q in questions if q["category"] in selected_cats]
 
     stats = load_stats()
 
