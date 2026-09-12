@@ -642,5 +642,97 @@
     "explanation_en": "The plan requires the day-to-day manager or a specifically delegated person (named or by position) to be able to talk to customers about what's in their food — this must be assigned, not left to whoever happens to be available.",
     "explanation_ko": "일상 관리 책임자 또는 플랜에 이름/직책으로 구체적으로 지정된 담당자가 손님에게 음식 속 성분을 설명할 수 있어야 합니다 — 아무나가 아니라 지정이 필요합니다.",
     "fcp_reference": "Orange Card / Knowing what is in your food / p.71"
+  },
+  {
+    "id": "sushi-05",
+    "category": "specialist_sushi",
+    "text_en": "How do you correctly test the pH of your acidified sushi rice?",
+    "text_ko": "산성화한 스시 밥의 pH를 올바르게 측정하는 방법은?",
+    "correct_en": "30 minutes after acidifying, mix 1 part clean water with 3 parts acidified rice, then test with a calibrated pH meter",
+    "correct_ko": "산성화 후 30분 뒤, 깨끗한 물 1 : 산성화된 밥 3 비율로 섞어서 calibrated pH meter로 측정한다",
+    "distractor_pool_en": [
+      "Immediately after acidifying, test the rice directly with pH strips, no mixing needed",
+      "Mix 3 parts water with 1 part rice, test immediately",
+      "Wait 2 hours, then test a dry rice sample with any pH meter",
+      "30 minutes after acidifying, mix equal parts water and rice, test with pH strips"
+    ],
+    "distractor_pool_ko": [
+      "산성화 직후 바로 밥을 pH 스트립으로 직접 측정한다 (섞을 필요 없음)",
+      "물 3 : 밥 1 비율로 섞어서 즉시 측정한다",
+      "2시간 기다린 후 마른 밥 샘플을 아무 pH미터로 측정한다",
+      "산성화 후 30분 뒤 물과 밥을 동량으로 섞어 pH 스트립으로 측정한다"
+    ],
+    "explanation_en": "The exact procedure: wait 30 minutes after acidifying, mix 1 part clean water with 3 parts acidified rice (e.g. ¼ cup water + ¾ cup rice), and test using a calibrated pH meter — not strips, and not immediately.",
+    "explanation_ko": "정확한 절차: 산성화 후 30분을 기다린 다음, 깨끗한 물 1 : 산성화된 밥 3 비율로 섞고(예: 물 ¼컵 + 밥 ¾컵), calibrated pH meter로 측정합니다 — pH 스트립이 아니고, 즉시도 아닙니다.",
+    "fcp_reference": "Teal Card / Making sushi / p.93"
+  },
+  {
+    "id": "sushi-06",
+    "category": "specialist_sushi",
+    "text_en": "Do you and your staff need to test the pH of EVERY batch of acidified rice you make?",
+    "text_ko": "산성화한 밥을 만들 때마다 매 배치(batch)의 pH를 항상 측정해야 하나요?",
+    "correct_en": "Yes — unless you can prove your acidifying method works every time (per the 'Proving the method' card)",
+    "correct_ko": "그렇다 — 단, 'Proving the method' 카드 기준으로 본인의 산성화 방법이 매번 확실히 작동한다는 걸 증명한 경우는 예외",
+    "distractor_pool_en": [
+      "No, only the first batch of the day needs testing",
+      "No, pH testing is only required once a week regardless of batches",
+      "Yes, with no exceptions under any circumstances",
+      "No, pH testing is only needed if a customer requests it"
+    ],
+    "distractor_pool_ko": [
+      "아니다, 하루 중 첫 배치만 측정하면 된다",
+      "아니다, 배치 수와 상관없이 주 1회만 측정하면 된다",
+      "그렇다, 어떤 경우에도 예외 없이 매번 측정해야 한다",
+      "아니다, 손님이 요청할 때만 측정하면 된다"
+    ],
+    "explanation_en": "Every batch must be tested UNLESS you can prove (per the 'Proving the method you use works every time' card) that your acidifying method reliably works — 3 consecutive successful checks with different batches lets you rely on the process instead of testing every single batch.",
+    "explanation_ko": "원칙적으로 모든 배치를 검사해야 하지만, 'Proving the method' 카드 기준으로 산성화 방법이 안정적으로 작동함을 증명(다른 배치로 3회 연속 성공)하면 매 배치 검사를 생략할 수 있습니다.",
+    "fcp_reference": "Teal Card / Making sushi / p.93"
+  },
+  {
+    "id": "close-02",
+    "category": "closing",
+    "text_en": "Your thermometers and pH meter seem less accurate than before. According to the plan, what should you do?",
+    "text_ko": "온도계와 pH미터가 예전보다 정확도가 떨어지는 것 같습니다. FCP상 어떻게 해야 하나요?",
+    "correct_en": "Service the equipment regularly and calibrate it according to your own calibration schedule",
+    "correct_ko": "장비를 정기적으로 점검하고, 본인이 정한 calibration schedule(검교정 일정)에 따라 교정한다",
+    "distractor_pool_en": [
+      "Replace the equipment immediately — calibration is not an option under the plan",
+      "Calibrate exactly once per year, as fixed by MPI for all businesses",
+      "No action needed unless the verifier specifically flags it during a visit",
+      "Only calibrate if the equipment is under warranty"
+    ],
+    "distractor_pool_ko": [
+      "즉시 교체해야 한다 — FCP상 교정은 선택지가 아니다",
+      "MPI가 전 업체 공통으로 정한 연 1회 주기로만 교정한다",
+      "verifier가 방문해서 지적하기 전까지는 조치할 필요 없다",
+      "보증기간 내에 있을 때만 교정한다"
+    ],
+    "explanation_en": "The plan requires you to service equipment regularly and calibrate according to YOUR OWN calibration schedule (e.g. thermometer, pH meter) — there's no single MPI-fixed interval for every business; you set and follow your own schedule, and your verifier checks that you're actually doing it.",
+    "explanation_ko": "FCP는 장비를 정기 점검하고 본인이 정한 calibration schedule에 따라 교정(예: 온도계, pH미터)하도록 요구합니다 — 모든 업체에 적용되는 MPI 고정 주기는 없고, 본인이 정한 일정을 세우고 실제로 지키는지 verifier가 확인합니다.",
+    "fcp_reference": "Purple Card / Maintaining equipment and facilities / p.81"
+  },
+  {
+    "id": "close-03",
+    "category": "closing",
+    "text_en": "Which of these pieces of measuring equipment does the plan specifically mention as needing to be accurate/calibrated?",
+    "text_ko": "FCP에서 정확도(교정)가 필요한 측정 장비로 구체적으로 언급하는 것은?",
+    "correct_en": "Thermometers AND the equipment used to measure the pH of sushi rice",
+    "correct_ko": "온도계뿐만 아니라, 스시 밥의 pH를 측정하는 장비도 포함",
+    "distractor_pool_en": [
+      "Only thermometers — pH equipment is not mentioned anywhere",
+      "Only equipment used for imported food",
+      "Only equipment costing over a certain amount",
+      "Only equipment used for meat, not rice or plant-based food"
+    ],
+    "distractor_pool_ko": [
+      "온도계만 해당되고 pH 장비는 어디에도 언급 없다",
+      "수입식품용 장비만 해당된다",
+      "일정 금액 이상 고가 장비만 해당된다",
+      "고기용 장비만 해당되고 밥/식물성 식품은 해당 없다"
+    ],
+    "explanation_en": "The 'Managing places and equipment' card explicitly gives the example: 'equipment that is accurate and working properly for measuring control points (e.g. thermometers for checking fridge/chiller temperatures or equipment to measure the pH of sushi rice)'.",
+    "explanation_ko": "'Managing places and equipment' 카드에 명확히 예시로 나와 있습니다: '관리기준점을 측정하는 데 정확하고 제대로 작동하는 장비(예: 냉장/냉동 온도 확인용 온도계, 또는 스시 밥 pH 측정 장비)'.",
+    "fcp_reference": "Dark Blue Card / Managing places and equipment / p.23"
   }
 ]
