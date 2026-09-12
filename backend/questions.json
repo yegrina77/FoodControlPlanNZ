@@ -274,5 +274,189 @@
     "explanation_en": "Ready-to-use acidified rice must be stored between 5°C and 15°C for no more than 8 hours, after which it must be thrown out — and leftover rice must never be mixed with a freshly prepared batch.",
     "explanation_ko": "사용 준비가 된 산성화 밥은 5°C~15°C에서 최대 8시간까지 보관하고, 이후엔 폐기해야 합니다 — 남은 밥을 새로 만든 밥과 섞으면 안 됩니다.",
     "fcp_reference": "Teal Card / Making sushi / p.93"
+  },
+  {
+    "id": "start-01",
+    "category": "starting",
+    "text_en": "How often must you check internal and external areas (including waste storage) for signs of pests?",
+    "text_ko": "해충 흔적이 있는지 내부/외부(쓰레기 보관구역 포함)를 얼마나 자주 점검해야 하나요?",
+    "correct_en": "Daily",
+    "correct_ko": "매일",
+    "distractor_pool_en": [
+      "Weekly",
+      "Monthly",
+      "Only when you notice a sign of pests",
+      "Every 3 days"
+    ],
+    "distractor_pool_ko": [
+      "매주",
+      "매월",
+      "해충 흔적이 보일 때만",
+      "3일마다"
+    ],
+    "explanation_en": "The 'Checking for pests' card requires daily checks of internal and external areas, including waste collection/storage areas, for signs of pests.",
+    "explanation_ko": "'Checking for pests' 카드는 쓰레기 보관구역을 포함한 내부/외부를 매일 점검해서 해충 흔적을 확인하도록 요구합니다.",
+    "fcp_reference": "Blue Card / Checking for pests / p.33"
+  },
+  {
+    "id": "serve-01",
+    "category": "serving_selling",
+    "text_en": "Food is being kept hot on display. At the 2-hour check, the temperature has dropped below 60°C. What must you do?",
+    "text_ko": "온장 진열 중인 음식이 2시간 체크 시 60°C 아래로 떨어졌습니다. 어떻게 해야 하나요?",
+    "correct_en": "Reheat it to above 75°C and increase the equipment temperature, then check again",
+    "correct_ko": "75°C 이상으로 재가열하고 장비 온도를 높인 후, 다시 확인한다",
+    "distractor_pool_en": [
+      "Throw it out immediately, no exceptions",
+      "Leave it and check again in another 2 hours",
+      "Just stir it to redistribute the heat",
+      "Turn up the bain-marie and wait, no reheating needed"
+    ],
+    "distractor_pool_ko": [
+      "예외 없이 즉시 폐기한다",
+      "그대로 두고 2시간 뒤 다시 확인한다",
+      "골고루 섞어주기만 하면 된다",
+      "재가열 없이 뱅마리 온도만 높이고 기다린다"
+    ],
+    "explanation_en": "If the 2-hour check shows the temperature has dropped below 60°C, you must reheat the food to above 75°C and increase the hot-holding equipment's temperature. If it's below 60°C again at the next check, it must be thrown out.",
+    "explanation_ko": "2시간 체크에서 60°C 아래로 떨어졌다면 75°C 이상으로 재가열하고 장비 온도를 올려야 합니다. 다음 체크에서도 60°C 미만이면 그때는 폐기해야 합니다.",
+    "fcp_reference": "Orange Card / Keeping food hot / p.64"
+  },
+  {
+    "id": "serve-02",
+    "category": "serving_selling",
+    "text_en": "Hot food has been held below 60°C for more than 4 hours. What is the correct action?",
+    "text_ko": "온장 음식이 60°C 미만으로 4시간을 초과해서 있었습니다. 올바른 조치는?",
+    "correct_en": "Throw it away — it cannot be reheated or served",
+    "correct_ko": "폐기한다 — 재가열이나 판매 모두 불가능하다",
+    "distractor_pool_en": [
+      "Reheat to 75°C and serve as normal",
+      "Cool it down quickly and use it the next day",
+      "It's fine to serve if it's above 60°C now",
+      "Mix it with a fresh batch to bring the average temperature up"
+    ],
+    "distractor_pool_ko": [
+      "75°C로 재가열해서 평소처럼 제공한다",
+      "빠르게 냉각시켜서 다음날 사용한다",
+      "지금 60°C 이상이면 제공해도 된다",
+      "새 배치와 섞어서 평균 온도를 올린다"
+    ],
+    "explanation_en": "Hot food held below 60°C for more than 4 hours must be thrown away — unlike the under-2-hour case, this cannot be saved by reheating. Old and new batches must never be mixed either.",
+    "explanation_ko": "60°C 미만으로 4시간을 초과한 온장 음식은 폐기해야 합니다 — 2시간 이내와 달리 재가열로 살릴 수 없습니다. 새 배치와 기존 배치를 섞는 것도 금지입니다.",
+    "fcp_reference": "Orange Card / Keeping food hot / p.64"
+  },
+  {
+    "id": "serve-03",
+    "category": "serving_selling",
+    "text_en": "Which of the following IS one of the officially required allergen categories staff must know?",
+    "text_ko": "다음 중 직원이 알아야 하는 '공식 알레르겐 항목'에 실제로 포함된 것은?",
+    "correct_en": "Sesame",
+    "correct_ko": "참깨(Sesame)",
+    "distractor_pool_en": [
+      "\"Shellfish\" as a general term (without specifying crustacea/molluscs)",
+      "Kiwifruit",
+      "Coconut",
+      "Gluten-free flour"
+    ],
+    "distractor_pool_ko": [
+      "'조개류(shellfish)'라는 일반 용어 (crustacea/molluscs로 구분 안 함)",
+      "키위(kiwifruit)",
+      "코코넛",
+      "글루텐프리 밀가루"
+    ],
+    "explanation_en": "Sesame is on the official list. Note the list specifically requires 'crustacea' and 'molluscs' as separate categories — a generic 'shellfish' label doesn't meet the requirement. Kiwifruit and coconut are not on the required list.",
+    "explanation_ko": "참깨는 공식 목록에 있습니다. 목록에서는 'crustacea'와 'molluscs'를 별도 항목으로 요구하기 때문에, 그냥 '조개류'라는 일반 용어로는 요건을 충족하지 못합니다. 키위, 코코넛은 필수 목록에 없습니다.",
+    "fcp_reference": "Orange Card / Knowing what is in your food / p.70"
+  },
+  {
+    "id": "serve-04",
+    "category": "serving_selling",
+    "text_en": "If you operate a live shellfish display unit, what salinity (salt concentration) must the water be maintained at?",
+    "text_ko": "라이브 조개류 진열 수조를 운영한다면, 물의 염도는 몇 %로 유지해야 하나요?",
+    "correct_en": "3.3%",
+    "correct_ko": "3.3%",
+    "distractor_pool_en": [
+      "1.0%",
+      "5.0%",
+      "10.0%",
+      "0.3%"
+    ],
+    "distractor_pool_ko": [
+      "1.0%",
+      "5.0%",
+      "10.0%",
+      "0.3%"
+    ],
+    "explanation_en": "A live shellfish display must maintain 3.3% salinity (33g salt dissolved in 1L water), stay at 10°C or below, and have dead/broken shellfish removed.",
+    "explanation_ko": "라이브 조개류 진열은 3.3% 염도(물 1L당 소금 33g)를 유지해야 하고, 10°C 이하를 유지하며, 죽거나 깨진 조개는 제거해야 합니다.",
+    "fcp_reference": "Orange Card / Displaying food and customers serving themselves / p.68"
+  },
+  {
+    "id": "close-01",
+    "category": "closing",
+    "text_en": "What is the correct order and logic for cleaning vs sanitising food contact surfaces?",
+    "text_ko": "식품 접촉 표면을 청소(cleaning)하는 것과 살균(sanitising)하는 것의 올바른 순서/논리는?",
+    "correct_en": "Clean first (removes dirt/grease/most bugs), then sanitise (kills remaining bugs) — you cannot sanitise an unclean surface",
+    "correct_ko": "먼저 청소(때·기름·대부분의 균 제거)한 후 살균(남은 균 사멸) — 청소 안 된 표면은 살균해도 소용없다",
+    "distractor_pool_en": [
+      "Sanitise first to kill bugs, then clean to remove the dead residue",
+      "Cleaning and sanitising are the same step, order doesn't matter",
+      "Only sanitising is required — cleaning is optional if you use a strong enough sanitiser",
+      "Clean and sanitise simultaneously with a combined product only"
+    ],
+    "distractor_pool_ko": [
+      "먼저 살균해서 균을 죽인 후, 청소로 잔여물을 제거한다",
+      "청소와 살균은 같은 단계라 순서는 상관없다",
+      "충분히 강한 살균제를 쓰면 청소는 생략해도 된다",
+      "반드시 청소+살균 겸용 제품으로 동시에만 해야 한다"
+    ],
+    "explanation_en": "Cleaning and sanitising are different steps — cleaning removes dirt, grease, and most bugs; sanitising kills harmful bugs left on already-clean surfaces. Sanitisers don't work properly on unclean surfaces, so cleaning must always come first.",
+    "explanation_ko": "청소와 살균은 다른 단계입니다 — 청소는 때·기름·대부분의 균을 제거하고, 살균은 이미 깨끗해진 표면에 남은 유해균을 죽입니다. 더러운 표면에는 살균제가 제대로 작동하지 않으므로 반드시 청소가 먼저입니다.",
+    "fcp_reference": "Purple Card / Cleaning up and closing / p.78"
+  },
+  {
+    "id": "trouble-01",
+    "category": "troubleshooting",
+    "text_en": "Under Tracing 'Option 2' (minimum information), what must you do if a food safety problem is found?",
+    "text_ko": "이력추적 'Option 2'(최소정보 기록) 방식에서 식품안전 문제가 발견되면 어떻게 해야 하나요?",
+    "correct_en": "Recall or dispose of ALL food that might have been affected",
+    "correct_ko": "영향을 받았을 가능성이 있는 모든 음식을 회수하거나 폐기한다",
+    "distractor_pool_en": [
+      "Only recall the specific batch you can identify from records",
+      "No action is needed if no customer has complained",
+      "Just notify MPI and wait for their instructions before doing anything",
+      "Recall only applies under Option 1, not Option 2"
+    ],
+    "distractor_pool_ko": [
+      "기록으로 식별 가능한 특정 배치만 회수한다",
+      "손님 불만이 없으면 조치할 필요 없다",
+      "MPI에 통보만 하고 지시를 기다린다",
+      "회수는 Option 1에서만 해당하고 Option 2는 해당 없다"
+    ],
+    "explanation_en": "Option 2 only records minimum information (supplier, food type/quantity, temperature if relevant) — this means if a problem occurs, you cannot pinpoint the affected batch, so you must recall or dispose of ALL food that might have been affected. This is why Option 2 can end up more expensive than Option 1's detailed tracking.",
+    "explanation_ko": "Option 2는 공급자, 음식 종류/수량, (해당되면) 온도 등 최소 정보만 기록합니다 — 그래서 문제가 생기면 영향받은 배치를 특정할 수 없어, 영향 가능성이 있는 모든 음식을 회수·폐기해야 합니다. 그래서 Option 2가 Option 1보다 결과적으로 더 비쌀 수 있습니다.",
+    "fcp_reference": "Red Card / Tracing your food / p.88"
+  },
+  {
+    "id": "trouble-02",
+    "category": "troubleshooting",
+    "text_en": "Under Tracing 'Option 1' (full information), what must you keep records of?",
+    "text_ko": "이력추적 'Option 1'(전체정보 기록) 방식에서는 어떤 기록을 남겨야 하나요?",
+    "correct_en": "Supplier details, brand and batch IDs, and Best Before/Use-By dates (if required)",
+    "correct_ko": "공급업체 정보, 브랜드/배치 ID, Best Before/Use-By 날짜 (필요시)",
+    "distractor_pool_en": [
+      "Only the total quantity purchased each month",
+      "Only the names of staff who handled the food",
+      "Only the price paid to each supplier",
+      "Only a photo of each delivery"
+    ],
+    "distractor_pool_ko": [
+      "매월 구매한 총 수량만",
+      "음식을 다룬 직원 이름만",
+      "공급업체에 지불한 가격만",
+      "배송 사진만"
+    ],
+    "explanation_en": "Option 1 requires a written plan plus records including supplier details, brand and batch IDs, and Best Before/Use-By dates — this level of detail lets you do a targeted recall instead of recalling everything.",
+    "explanation_ko": "Option 1은 서면 계획과 함께 공급업체 정보, 브랜드/배치 ID, Best Before/Use-By 날짜를 기록해야 합니다 — 이 정도 디테일이 있어야 전체가 아닌 특정 배치만 타겟 회수가 가능합니다.",
+    "fcp_reference": "Red Card / Tracing your food / p.88"
   }
 ]
