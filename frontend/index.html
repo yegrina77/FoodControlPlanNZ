@@ -202,26 +202,40 @@ async function doLogin() {
   }
 }
 
+let loadedCategories = [];
+
 async function loadCategories() {
   const res = await fetch('/api/categories');
   const data = await res.json();
+  loadedCategories = data.categories || [];
+  renderCategoryOptions();
+}
+
+function renderCategoryOptions() {
   const sel = document.getElementById('categorySelect');
+  const prevValue = sel.value;
   sel.innerHTML = '';
   const allOpt = document.createElement('option');
   allOpt.value = 'all';
-  allOpt.textContent = catNames.all.ko;
+  allOpt.textContent = catNames.all[lang];
   sel.appendChild(allOpt);
-  (data.categories || []).forEach(c => {
+  loadedCategories.forEach(c => {
     const opt = document.createElement('option');
     opt.value = c;
-    opt.textContent = (catNames[c] && catNames[c].ko) || c;
+    opt.textContent = (catNames[c] && catNames[c][lang]) || c;
     sel.appendChild(opt);
   });
+  if (prevValue) sel.value = prevValue;
 }
 
 function toggleLang() {
   lang = lang === 'ko' ? 'en' : 'ko';
-  renderQuestion();
+  if (!document.getElementById('quizScreen').classList.contains('hidden') && quizQuestions.length > 0) {
+    renderQuestion();
+  }
+  if (!document.getElementById('setupScreen').classList.contains('hidden')) {
+    renderCategoryOptions();
+  }
 }
 
 async function startQuiz() {
