@@ -104,7 +104,7 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>🍣 FCP Audit 대비 문제집</h1>
+  <h1><span data-i18n="title">🍣 FCP Audit 대비 문제집</span></h1>
 
   <!-- LOGIN SCREEN -->
   <div id="loginScreen" class="card">
@@ -117,18 +117,18 @@
   <!-- SETUP SCREEN -->
   <div id="setupScreen" class="card hidden">
     <div class="toplinks">
-      <span>퀴즈 설정</span>
+      <span data-i18n="setupTitle">퀴즈 설정</span>
       <button class="lang-toggle" onclick="toggleLang()" id="langBtn" style="width:auto;">KO / EN</button>
     </div>
-    <label>카테고리</label>
+    <label data-i18n="categoryLabel">카테고리</label>
     <select id="categorySelect"></select>
-    <label>문제 수</label>
+    <label data-i18n="countLabel">문제 수</label>
     <select id="countSelect">
-      <option value="5">5문제</option>
-      <option value="10" selected>10문제</option>
-      <option value="20">20문제</option>
+      <option value="5" data-i18n="count5">5문제</option>
+      <option value="10" selected data-i18n="count10">10문제</option>
+      <option value="20" data-i18n="count20">20문제</option>
     </select>
-    <button onclick="startQuiz()">시작하기 / Start</button>
+    <button onclick="startQuiz()" data-i18n="startBtn">시작하기 / Start</button>
   </div>
 
   <!-- QUIZ SCREEN -->
@@ -141,15 +141,16 @@
     <div class="question-text" id="questionText"></div>
     <div id="optionsList"></div>
     <div id="explainBox" class="explain-box hidden"></div>
-    <button id="nextBtn" class="hidden" onclick="nextQuestion()">다음 / Next</button>
+    <button id="nextBtn" class="hidden" onclick="nextQuestion()" data-i18n="nextBtn">다음 / Next</button>
   </div>
 
   <!-- RESULT SCREEN -->
   <div id="resultScreen" class="card hidden">
-    <h2>결과 / Result</h2>
-    <div class="result-row"><span>정답</span><span id="scoreCorrect"></span></div>
-    <div class="result-row"><span>오답</span><span id="scoreWrong"></span></div>
-    <button onclick="resetToSetup()">다시 풀기 / Retry</button>
+    <h2 data-i18n="resultTitle">결과 / Result</h2>
+    <div class="result-row"><span data-i18n="correctLabel">정답</span><span id="scoreCorrect"></span></div>
+    <div class="result-row"><span data-i18n="wrongLabel">오답</span><span id="scoreWrong"></span></div>
+    <button id="reviewBtn" class="hidden" onclick="startReview()" data-i18n="reviewBtn">틀린 문제 다시 풀기</button>
+    <button class="secondary" onclick="resetToSetup()" data-i18n="retryBtn">다시 풀기 / Retry</button>
   </div>
 </div>
 
@@ -159,6 +160,31 @@ let quizQuestions = [];
 let currentIndex = 0;
 let score = { correct: 0, wrong: 0 };
 let answered = false;
+let wrongIds = [];
+
+const uiText = {
+  title:       { ko: '🍣 FCP Audit 대비 문제집', en: '🍣 FCP Audit Prep Quiz' },
+  setupTitle:  { ko: '퀴즈 설정', en: 'Quiz Setup' },
+  categoryLabel: { ko: '카테고리', en: 'Category' },
+  countLabel:  { ko: '문제 수', en: 'Number of questions' },
+  count5:      { ko: '5문제', en: '5 questions' },
+  count10:     { ko: '10문제', en: '10 questions' },
+  count20:     { ko: '20문제', en: '20 questions' },
+  startBtn:    { ko: '시작하기', en: 'Start' },
+  nextBtn:     { ko: '다음', en: 'Next' },
+  resultTitle: { ko: '결과', en: 'Result' },
+  correctLabel:{ ko: '정답', en: 'Correct' },
+  wrongLabel:  { ko: '오답', en: 'Wrong' },
+  retryBtn:    { ko: '다시 풀기', en: 'Retry' },
+  reviewBtn:   { ko: '틀린 문제 다시 풀기', en: 'Review wrong answers' }
+};
+
+function applyStaticText() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (uiText[key]) el.textContent = uiText[key][lang];
+  });
+}
 
 const catNames = {
   setting_up: { ko: 'Setting up (매장 설정)', en: 'Setting up' },
@@ -230,6 +256,7 @@ function renderCategoryOptions() {
 
 function toggleLang() {
   lang = lang === 'ko' ? 'en' : 'ko';
+  applyStaticText();
   if (!document.getElementById('quizScreen').classList.contains('hidden') && quizQuestions.length > 0) {
     renderQuestion();
   }
@@ -246,8 +273,29 @@ async function startQuiz() {
   quizQuestions = data.questions || [];
   currentIndex = 0;
   score = { correct: 0, wrong: 0 };
+  wrongIds = [];
   if (quizQuestions.length === 0) {
     alert('문제가 없습니다.');
+    return;
+  }
+  show('quizScreen');
+  renderQuestion();
+}
+
+async function startReview() {
+  const idsToReview = [...wrongIds];
+  const res = await fetch('/api/quiz-by-ids', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ ids: idsToReview })
+  });
+  const data = await res.json();
+  quizQuestions = data.questions || [];
+  currentIndex = 0;
+  score = { correct: 0, wrong: 0 };
+  wrongIds = [];
+  if (quizQuestions.length === 0) {
+    resetToSetup();
     return;
   }
   show('quizScreen');
@@ -290,7 +338,11 @@ async function selectOption(idx) {
   });
 
   const isCorrect = !!opt.correct;
-  if (isCorrect) score.correct++; else score.wrong++;
+  if (isCorrect) score.correct++;
+  else {
+    score.wrong++;
+    if (!wrongIds.includes(q.id)) wrongIds.push(q.id);
+  }
 
   fetch('/api/report', {
     method: 'POST',
@@ -318,6 +370,8 @@ function nextQuestion() {
 function showResults() {
   document.getElementById('scoreCorrect').textContent = score.correct;
   document.getElementById('scoreWrong').textContent = score.wrong;
+  const reviewBtn = document.getElementById('reviewBtn');
+  reviewBtn.classList.toggle('hidden', wrongIds.length === 0);
   show('resultScreen');
 }
 
