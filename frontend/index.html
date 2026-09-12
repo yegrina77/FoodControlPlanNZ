@@ -9,6 +9,7 @@
     --primary: #1e3a5f;
     --accent: #2f9e44;
     --danger: #e03131;
+    --warn: #f59f00;
     --bg: #f4f6f8;
     --card-bg: #ffffff;
     --text: #212529;
@@ -56,13 +57,22 @@
   button.secondary { background: #868e96; margin-top: 8px; }
   .error { color: var(--danger); font-size: 0.9rem; margin-bottom: 8px; }
   .toplinks {
-    display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
   }
-  .lang-toggle {
+  .lang-toggle, .exit-btn {
     background: #e9ecef; color: var(--text); border-radius: 20px; padding: 6px 14px;
     font-size: 0.85rem; width: auto; cursor: pointer;
   }
-  .progress { font-size: 0.85rem; color: #495057; margin-bottom: 10px; }
+  .exit-btn { background: #ffe3e3; color: var(--danger); }
+  .progress { font-size: 0.85rem; color: #495057; }
+  .timer-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 50%; font-weight: 700; font-size: 0.95rem;
+    color: white; transition: background-color 0.3s ease;
+  }
+  .timer-green { background: var(--accent); }
+  .timer-yellow { background: var(--warn); }
+  .timer-red { background: var(--danger); }
   .question-text { font-size: 1.05rem; font-weight: 600; margin-bottom: 16px; line-height: 1.5; }
   .option {
     display: block;
@@ -94,11 +104,26 @@
     color: #495057;
     font-style: italic;
   }
+  .explain-box .timeout-tag {
+    display: inline-block; background: var(--danger); color: white; border-radius: 6px;
+    padding: 2px 8px; font-size: 0.8rem; margin-bottom: 8px;
+  }
   .result-row { display: flex; justify-content: space-between; margin: 4px 0; }
   .cat-badge {
     display: inline-block; background: #dee2e6; border-radius: 12px; padding: 2px 10px;
     font-size: 0.75rem; margin-bottom: 10px;
   }
+  .cat-checkbox-list {
+    border: 1px solid #ccc; border-radius: 8px; padding: 8px 12px; margin-bottom: 12px;
+    max-height: 220px; overflow-y: auto;
+  }
+  .cat-checkbox-item {
+    display: flex; align-items: center; gap: 8px; padding: 7px 0; font-size: 0.92rem;
+    border-bottom: 1px solid #f1f3f5;
+  }
+  .cat-checkbox-item:last-child { border-bottom: none; }
+  .cat-checkbox-item input { width: auto; margin: 0; }
+  .cat-checkbox-item.all-item { font-weight: 700; }
   .hidden { display: none; }
 </style>
 </head>
@@ -118,14 +143,14 @@
   <div id="setupScreen" class="card hidden">
     <div class="toplinks">
       <span data-i18n="setupTitle">퀴즈 설정</span>
-      <button class="lang-toggle" onclick="toggleLang()" id="langBtn" style="width:auto;">KO / EN</button>
+      <button class="lang-toggle" onclick="toggleLang()" style="width:auto;">KO / EN</button>
     </div>
-    <label data-i18n="categoryLabel">카테고리</label>
-    <select id="categorySelect"></select>
+    <label data-i18n="categoryLabel">카테고리 (복수 선택 가능)</label>
+    <div id="categoryCheckboxes" class="cat-checkbox-list"></div>
     <label data-i18n="countLabel">문제 수</label>
     <select id="countSelect">
-      <option value="5" data-i18n="count5">5문제</option>
       <option value="10" selected data-i18n="count10">10문제</option>
+      <option value="15" data-i18n="count15">15문제</option>
       <option value="20" data-i18n="count20">20문제</option>
     </select>
     <button onclick="startQuiz()" data-i18n="startBtn">시작하기 / Start</button>
@@ -134,8 +159,12 @@
   <!-- QUIZ SCREEN -->
   <div id="quizScreen" class="card hidden">
     <div class="toplinks">
-      <div class="progress" id="progressLabel"></div>
+      <button class="exit-btn" onclick="exitQuiz()" data-i18n="exitBtn">나가기</button>
       <button class="lang-toggle" onclick="toggleLang()" style="width:auto;">KO / EN</button>
+    </div>
+    <div class="toplinks">
+      <div class="progress" id="progressLabel"></div>
+      <div class="timer-badge timer-green" id="timerBadge">20</div>
     </div>
     <div class="cat-badge" id="catBadge"></div>
     <div class="question-text" id="questionText"></div>
@@ -162,21 +191,29 @@ let score = { correct: 0, wrong: 0 };
 let answered = false;
 let wrongIds = [];
 
+const TIMER_SECONDS = 20;
+let timeLeft = TIMER_SECONDS;
+let timerInterval = null;
+
 const uiText = {
   title:       { ko: '🍣 FCP Audit 대비 문제집', en: '🍣 FCP Audit Prep Quiz' },
   setupTitle:  { ko: '퀴즈 설정', en: 'Quiz Setup' },
-  categoryLabel: { ko: '카테고리', en: 'Category' },
+  categoryLabel: { ko: '카테고리 (복수 선택 가능)', en: 'Category (multi-select)' },
   countLabel:  { ko: '문제 수', en: 'Number of questions' },
-  count5:      { ko: '5문제', en: '5 questions' },
   count10:     { ko: '10문제', en: '10 questions' },
+  count15:     { ko: '15문제', en: '15 questions' },
   count20:     { ko: '20문제', en: '20 questions' },
   startBtn:    { ko: '시작하기', en: 'Start' },
   nextBtn:     { ko: '다음', en: 'Next' },
+  exitBtn:     { ko: '나가기', en: 'Exit' },
   resultTitle: { ko: '결과', en: 'Result' },
   correctLabel:{ ko: '정답', en: 'Correct' },
   wrongLabel:  { ko: '오답', en: 'Wrong' },
   retryBtn:    { ko: '다시 풀기', en: 'Retry' },
-  reviewBtn:   { ko: '틀린 문제 다시 풀기', en: 'Review wrong answers' }
+  reviewBtn:   { ko: '틀린 문제 다시 풀기', en: 'Review wrong answers' },
+  timeoutTag:  { ko: '⏰ 시간 초과!', en: "⏰ Time's up!" },
+  exitConfirm: { ko: '퀴즈를 그만두고 나가시겠습니까? 진행 중인 결과는 저장되지 않습니다.', en: 'Exit the quiz? Your current progress will not be saved.' },
+  noQuestions: { ko: '선택한 카테고리에 문제가 없습니다.', en: 'No questions found for the selected categories.' }
 };
 
 function applyStaticText() {
@@ -195,7 +232,7 @@ const catNames = {
   closing: { ko: 'Closing (마감)', en: 'Closing' },
   troubleshooting: { ko: 'Troubleshooting (문제대응)', en: 'Troubleshooting' },
   specialist_sushi: { ko: 'Specialist - 스시', en: 'Specialist - Sushi' },
-  all: { ko: '전체 (통합)', en: 'All (mixed)' }
+  all: { ko: '전체 (모든 카테고리)', en: 'All categories' }
 };
 
 function show(id) {
@@ -238,27 +275,60 @@ async function loadCategories() {
 }
 
 function renderCategoryOptions() {
-  const sel = document.getElementById('categorySelect');
-  const prevValue = sel.value;
-  sel.innerHTML = '';
-  const allOpt = document.createElement('option');
-  allOpt.value = 'all';
-  allOpt.textContent = catNames.all[lang];
-  sel.appendChild(allOpt);
+  const container = document.getElementById('categoryCheckboxes');
+  // remember which were checked before re-render (e.g. on language toggle)
+  const prevChecked = new Set(
+    Array.from(container.querySelectorAll('input[type=checkbox]:checked')).map(el => el.value)
+  );
+  const isFirstRender = container.children.length === 0;
+
+  container.innerHTML = '';
+
+  const allItem = document.createElement('div');
+  allItem.className = 'cat-checkbox-item all-item';
+  allItem.innerHTML = `<input type="checkbox" id="cat_all" value="all"><label for="cat_all">${catNames.all[lang]}</label>`;
+  container.appendChild(allItem);
+  const allCheckbox = allItem.querySelector('input');
+  allCheckbox.checked = isFirstRender ? true : prevChecked.has('all');
+
   loadedCategories.forEach(c => {
-    const opt = document.createElement('option');
-    opt.value = c;
-    opt.textContent = (catNames[c] && catNames[c][lang]) || c;
-    sel.appendChild(opt);
+    const item = document.createElement('div');
+    item.className = 'cat-checkbox-item';
+    const label = (catNames[c] && catNames[c][lang]) || c;
+    item.innerHTML = `<input type="checkbox" id="cat_${c}" value="${c}"><label for="cat_${c}">${label}</label>`;
+    container.appendChild(item);
+    const cb = item.querySelector('input');
+    cb.checked = prevChecked.has(c);
+    cb.addEventListener('change', () => {
+      if (cb.checked) allCheckbox.checked = false;
+      const anyChecked = Array.from(container.querySelectorAll('input[type=checkbox]:not(#cat_all)'))
+        .some(el => el.checked);
+      if (!anyChecked) allCheckbox.checked = true;
+    });
   });
-  if (prevValue) sel.value = prevValue;
+
+  allCheckbox.addEventListener('change', () => {
+    if (allCheckbox.checked) {
+      container.querySelectorAll('input[type=checkbox]:not(#cat_all)').forEach(el => el.checked = false);
+    }
+  });
+}
+
+function getSelectedCategories() {
+  const container = document.getElementById('categoryCheckboxes');
+  const allChecked = container.querySelector('#cat_all').checked;
+  if (allChecked) return 'all';
+  const checked = Array.from(container.querySelectorAll('input[type=checkbox]:checked'))
+    .map(el => el.value)
+    .filter(v => v !== 'all');
+  return checked.length > 0 ? checked.join(',') : 'all';
 }
 
 function toggleLang() {
   lang = lang === 'ko' ? 'en' : 'ko';
   applyStaticText();
   if (!document.getElementById('quizScreen').classList.contains('hidden') && quizQuestions.length > 0) {
-    renderQuestion();
+    updateQuestionLanguage();
   }
   if (!document.getElementById('setupScreen').classList.contains('hidden')) {
     renderCategoryOptions();
@@ -266,16 +336,16 @@ function toggleLang() {
 }
 
 async function startQuiz() {
-  const category = document.getElementById('categorySelect').value;
+  const categories = getSelectedCategories();
   const count = document.getElementById('countSelect').value;
-  const res = await fetch(`/api/quiz?category=${category}&count=${count}`);
+  const res = await fetch(`/api/quiz?categories=${encodeURIComponent(categories)}&count=${count}`);
   const data = await res.json();
   quizQuestions = data.questions || [];
   currentIndex = 0;
   score = { correct: 0, wrong: 0 };
   wrongIds = [];
   if (quizQuestions.length === 0) {
-    alert('문제가 없습니다.');
+    alert(uiText.noQuestions[lang]);
     return;
   }
   show('quizScreen');
@@ -302,6 +372,14 @@ async function startReview() {
   renderQuestion();
 }
 
+function exitQuiz() {
+  if (confirm(uiText.exitConfirm[lang])) {
+    stopTimer();
+    resetToSetup();
+  }
+}
+
+// Full rebuild: called when moving to a genuinely new question.
 function renderQuestion() {
   const q = quizQuestions[currentIndex];
   answered = false;
@@ -317,17 +395,92 @@ function renderQuestion() {
     const btn = document.createElement('button');
     btn.className = 'option';
     btn.textContent = lang === 'ko' ? opt.text_ko : opt.text_en;
+    btn.dataset.ko = opt.text_ko;
+    btn.dataset.en = opt.text_en;
     btn.onclick = () => selectOption(idx);
     list.appendChild(btn);
   });
 
   document.getElementById('explainBox').classList.add('hidden');
+  document.getElementById('explainBox').innerHTML = '';
   document.getElementById('nextBtn').classList.add('hidden');
+
+  startTimer();
+}
+
+// Lightweight update: called on language toggle only. Does not reset timer or answered state.
+function updateQuestionLanguage() {
+  const q = quizQuestions[currentIndex];
+  if (!q) return;
+  document.getElementById('catBadge').textContent =
+    (catNames[q.category] && catNames[q.category][lang]) || q.category;
+  document.getElementById('questionText').textContent = lang === 'ko' ? q.text_ko : q.text_en;
+  document.querySelectorAll('#optionsList .option').forEach(btn => {
+    btn.textContent = lang === 'ko' ? btn.dataset.ko : btn.dataset.en;
+  });
+  if (answered) {
+    const explainBox = document.getElementById('explainBox');
+    if (!explainBox.classList.contains('hidden')) {
+      renderExplanation(q, explainBox.dataset.wasTimeout === 'true');
+    }
+  }
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timeLeft = TIMER_SECONDS;
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      handleTimeout();
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+}
+
+function updateTimerDisplay() {
+  const badge = document.getElementById('timerBadge');
+  badge.textContent = timeLeft;
+  badge.classList.remove('timer-green', 'timer-yellow', 'timer-red');
+  if (timeLeft <= 5) badge.classList.add('timer-red');
+  else if (timeLeft <= 10) badge.classList.add('timer-yellow');
+  else badge.classList.add('timer-green');
+}
+
+function renderExplanation(q, wasTimeout) {
+  const explainBox = document.getElementById('explainBox');
+  const explanation = lang === 'ko' ? q.explanation_ko : q.explanation_en;
+  const timeoutTag = wasTimeout
+    ? `<div class="timeout-tag">${uiText.timeoutTag[lang]}</div>`
+    : '';
+  explainBox.innerHTML = `${timeoutTag}<div>${explanation}</div><div class="ref">📍 ${q.fcp_reference}</div>`;
+  explainBox.dataset.wasTimeout = wasTimeout ? 'true' : 'false';
+  explainBox.classList.remove('hidden');
+}
+
+function recordAnswer(q, isCorrect) {
+  if (isCorrect) score.correct++;
+  else {
+    score.wrong++;
+    if (!wrongIds.includes(q.id)) wrongIds.push(q.id);
+  }
+  fetch('/api/report', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ question_id: q.id, correct: isCorrect })
+  }).catch(() => {});
 }
 
 async function selectOption(idx) {
   if (answered) return;
   answered = true;
+  stopTimer();
   const q = quizQuestions[currentIndex];
   const opt = q.options[idx];
   const buttons = document.querySelectorAll('#optionsList .option');
@@ -338,29 +491,29 @@ async function selectOption(idx) {
   });
 
   const isCorrect = !!opt.correct;
-  if (isCorrect) score.correct++;
-  else {
-    score.wrong++;
-    if (!wrongIds.includes(q.id)) wrongIds.push(q.id);
-  }
+  recordAnswer(q, isCorrect);
+  renderExplanation(q, false);
+  document.getElementById('nextBtn').classList.remove('hidden');
+}
 
-  fetch('/api/report', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ question_id: q.id, correct: isCorrect })
-  }).catch(() => {});
-
-  const explainBox = document.getElementById('explainBox');
-  const explanation = lang === 'ko' ? q.explanation_ko : q.explanation_en;
-  explainBox.innerHTML = `<div>${explanation}</div><div class="ref">📍 ${q.fcp_reference}</div>`;
-  explainBox.classList.remove('hidden');
-
+function handleTimeout() {
+  if (answered) return;
+  answered = true;
+  const q = quizQuestions[currentIndex];
+  const buttons = document.querySelectorAll('#optionsList .option');
+  buttons.forEach((btn, i) => {
+    btn.disabled = true;
+    if (q.options[i].correct) btn.classList.add('correct');
+  });
+  recordAnswer(q, false);
+  renderExplanation(q, true);
   document.getElementById('nextBtn').classList.remove('hidden');
 }
 
 function nextQuestion() {
   currentIndex++;
   if (currentIndex >= quizQuestions.length) {
+    stopTimer();
     showResults();
   } else {
     renderQuestion();
@@ -376,10 +529,11 @@ function showResults() {
 }
 
 function resetToSetup() {
+  stopTimer();
   show('setupScreen');
 }
 
-// on load, try setup screen directly if already authed (best-effort)
+// on load, start at login screen
 show('loginScreen');
 </script>
 </body>
